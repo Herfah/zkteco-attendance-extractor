@@ -1,5 +1,5 @@
 """Module to handle ZKTeco device communication"""
-from zk import ZK, const
+from zkteco_push_sdk import ZKDevice
 from config import config
 import logging
 
@@ -19,8 +19,8 @@ class ZKTecoDevice:
     def connect(self):
         """Connect to ZKTeco device"""
         try:
-            self.conn = ZK(self.ip, port=self.port, timeout=self.timeout)
-            self.zk = self.conn.connect()
+            self.zk = ZKDevice(self.ip, port=self.port, timeout=self.timeout)
+            self.zk.connect()
             logger.info(f"Connected to ZKTeco device at {self.ip}:{self.port}")
             return True
         except Exception as e:
@@ -44,14 +44,8 @@ class ZKTecoDevice:
             if not self.zk:
                 return None
             
-            # Disable device to read data
-            self.zk.disable_device()
-            
             # Get attendance records
             attendance = self.zk.get_attendance()
-            
-            # Re-enable device
-            self.zk.enable_device()
             
             logger.info(f"Retrieved {len(attendance)} attendance records")
             return attendance
@@ -76,7 +70,7 @@ class ZKTecoDevice:
                 return None
             
             info = {
-                'serial_number': self.zk.get_serialnumber(),
+                'serial_number': self.zk.get_serial_number(),
                 'device_name': self.zk.get_device_name(),
                 'platform': self.zk.get_platform(),
                 'firmware_version': self.zk.get_firmware_version(),
