@@ -1,0 +1,8 @@
+PyQt5==5.15.9
+PyQt5-sip==12.13.0
+zk==2.8.3
+openpyxl==3.10.10
+pandas==2.0.3
+python-dotenv==1.0.0
+requests==2.31.0
+schedule==1.2.0
