@@ -325,7 +325,7 @@ bash uninstall.sh
 
 For issues or questions:
 - 📖 Check this installation guide
-- 🔎 Review troubleshooting section
+- 🔍 Review troubleshooting section
 - 🐛 Open issue on GitHub
 - 📧 Contact: Check GitHub repository
 
